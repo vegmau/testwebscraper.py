@@ -13,8 +13,6 @@ st_time = time()
 # setting some basic starting vars
 url = r'https://www.alternate.nl/html/listings/1472811138409?tk=7&lk=94962&page=1&size=40&showFilter=true'
 dict = {}
-sauce = 0
-
 
 # The selenium way.. (slower)
 # def req_web:
