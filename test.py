@@ -42,7 +42,6 @@ with open('links.json', 'w') as json_file:
     json_file.write(jdict)
 
 
-
 with open('links.json', 'r') as json_file:
     dict = json_file.read()
 
