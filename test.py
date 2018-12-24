@@ -50,16 +50,17 @@ with open('data.json', 'w') as json_file:
 with open('data.json', 'r') as json_file:
     dict = json_file.read()
 
-print(dict)
+if __name__ == "__main__":
+    print(dict)
 
-# printing program exection duration before ending program
-print('Program execution duration is {} seconds..'.format(time()-st_time))
+    # printing program exection duration before ending program
+    print('Program execution duration is {} seconds..'.format(time()-st_time))
 
-# ONLY FOR SELENIUM WEBDRIVER:
-# close this webdriver browser instance
-# web.close()
-# # closes all webdrivers gracefully and ends all driver processes.
-# web.quit()
+    # ONLY FOR SELENIUM WEBDRIVER:
+    # close this webdriver browser instance
+    # web.close()
+    # # closes all webdrivers gracefully and ends all driver processes.
+    # web.quit()
 
-# exit progam
-sys.exit()
+    # exit progam
+    sys.exit()
