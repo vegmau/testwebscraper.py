@@ -31,18 +31,23 @@ def req_web(url):
     return sauce
 
 
+def read_page():
+    containers = sauce.find_all("div", {"class":"listRow"})
+    for e, container in enumerate(containers):
+        container = container
+    return container
+
 sauce = req_web(url)
+container = sauce.find_all('div', {'class':'listRow'})
+# for i, y in tqdm(enumerate(sauce.find_all('a', href=True))):
+#      dict.update({'link{}'.format(i):y['href']})
 
-for i, y in tqdm(enumerate(sauce.find_all('a', href=True))):
-     dict.update({'link{}'.format(i):y['href']})
-
-
-with open('links.json', 'w') as json_file:
+with open('data.json', 'w') as json_file:
     jdict = json.dumps(dict)
     json_file.write(jdict)
 
 
-with open('links.json', 'r') as json_file:
+with open('data.json', 'r') as json_file:
     dict = json_file.read()
 
 print(dict)
