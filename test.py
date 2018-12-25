@@ -31,16 +31,14 @@ def req_web(url):
     return sauce
 
 
-def read_page():
+def read_page(sauce):
     containers = sauce.find_all("div", {"class":"listRow"})
     for e, container in enumerate(containers):
-        container = container
-    return container
+            dict.update({'product-{}'.format(e):container})
 
 sauce = req_web(url)
-container = sauce.find_all('div', {'class':'listRow'})
-# for i, y in tqdm(enumerate(sauce.find_all('a', href=True))):
-#      dict.update({'link{}'.format(i):y['href']})
+read_page(sauce)
+
 
 with open('data.json', 'w') as json_file:
     jdict = json.dumps(dict)
