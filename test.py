@@ -7,8 +7,6 @@ from time import time
 import json
 import sys
 
-# setting program launch/start time so we can record program execution duration
-st_time = time()
 
 # setting some basic starting vars
 url = r'https://www.alternate.nl/html/listings/1472811138409?tk=7&lk=94962&page=1&size=40&showFilter=true'
@@ -31,24 +29,28 @@ def req_web(url):
     return sauce
 
 
-def read_page(sauce):
+def read_page():
+    global containers
     containers = sauce.find_all("div", {"class":"listRow"})
-    for e, container in enumerate(containers):
-            dict.update({'product-{}'.format(e):container})
-
-sauce = req_web(url)
-read_page(sauce)
+    with open("page.html", "w") as page:
+        page.write(str(containers))
 
 
-with open('data.json', 'w') as json_file:
-    jdict = json.dumps(dict)
-    json_file.write(jdict)
+def get_items():
+    data = open("data.json", "w")
+    for container in tqdm(containers):
+        container.find("span", {"class":"name"}).descendants
 
+    data.close()
 
-with open('data.json', 'r') as json_file:
-    dict = json_file.read()
 
 if __name__ == "__main__":
+    # setting program exection start time so we can record program execution duration
+    st_time = time()
+
+    sauce = req_web(url)
+    read_page()
+
     print(dict)
 
     # printing program exection duration before ending program
