@@ -2,15 +2,12 @@
 # from selenium import webdriver as driver
 from bs4 import BeautifulSoup as soup
 from requests_html import HTMLSession
+from multiprocessing import Pool
 from tqdm import tqdm
 from time import time
-import json
+import jsonpy
 import sys
 
-
-# setting some basic starting vars
-url = r'https://www.alternate.nl/html/listings/1472811138409?tk=7&lk=94962&page=1&size=40&showFilter=true'
-dict = {}
 
 # The selenium way.. (slower)
 # def req_web:
@@ -36,10 +33,11 @@ def read_page():
         page.write(str(containers))
 
 
-def get_items():
+def get_items(containers):
     data = open("data.json", "w")
     for container in tqdm(containers):
-        container.find("span", {"class":"name"}).descendants
+        container.find("span", {"class":"name"})
+        print(container)
 
     data.close()
 
@@ -47,6 +45,10 @@ def get_items():
 if __name__ == "__main__":
     # setting program exection start time so we can record program execution duration
     st_time = time()
+    # setting some basic starting vars
+    url = r'https://www.alternate.nl/html/listings/1472811138409?tk=7&lk=94962&page=1&size=40&showFilter=true'
+    dict = {}
+    lst = []
 
     sauce = req_web(url)
     read_page()
